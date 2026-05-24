@@ -29,22 +29,35 @@ The system is designed to:
 
 ---
 
-## Technologies
 
-- ESP32
-- Flask
-- React
-- MongoDB
-- MQTT
 ### Hardware
 - ESP32
 - Temperature Sensors
 - Moisture Sensors
 
-### Backend
-- Flask / FastAPI
-- MQTT
+# Backend Service
+
+This backend handles:
+- sensor data collection
+- API communication
+- authentication
+- MongoDB storage
+- MQTT messaging
+
+## Planned Technologies
+
+- Flask
+- FastAPI
 - MongoDB
+- MQTT
+- JWT Authentication
+
+## Planned Endpoints
+
+POST /sensor-data
+GET /patients
+GET /analytics
+POST /upload-image
 
 ### Frontend
 - React

@@ -31,6 +31,11 @@ The system is designed to:
 
 ## Technologies
 
+- ESP32
+- Flask
+- React
+- MongoDB
+- MQTT
 ### Hardware
 - ESP32
 - Temperature Sensors

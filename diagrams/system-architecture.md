@@ -4,9 +4,9 @@ Sensor Layer
 ↓
 ESP32 Controller
 ↓
-MQTT / REST API
+MQTT Communication
 ↓
-Backend Server
+Backend API
 ↓
 MongoDB Database
 ↓

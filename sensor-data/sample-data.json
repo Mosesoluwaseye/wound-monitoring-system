@@ -1,0 +1,6 @@
+{
+  "patient_id": "P001",
+  "temperature": 37.2,
+  "moisture": 58,
+  "status": "stable"
+}

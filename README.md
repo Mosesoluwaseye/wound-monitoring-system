@@ -1,5 +1,10 @@
 # Wound Monitoring System
 
+![Python](https://img.shields.io/badge/Python-Backend-blue)
+![Flask](https://img.shields.io/badge/Flask-API-black)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
+![IoT](https://img.shields.io/badge/IoT-Healthcare-orange)
+
 Real-time IoT wound monitoring and healthcare visualization system using sensors, backend APIs, and live dashboards.
 
 ---
@@ -58,7 +63,7 @@ The system is designed to:
 
 ---
 
-# Backend Service
+## Backend Service
 
 This backend handles:
 
@@ -123,6 +128,48 @@ Real-Time Healthcare Visualization
 
 ---
 
+## Expert Monitoring System
+
+The platform supports remote healthcare supervision through expert-assisted wound monitoring.
+
+Healthcare professionals can:
+
+- review wound sensor readings remotely
+- monitor patient healing progress
+- analyze wound temperature and moisture levels
+- receive abnormal condition alerts
+- document wound progression using images
+- track patient recovery over time
+
+The system is designed to improve communication between patients and healthcare professionals through digital healthcare technologies and real-time monitoring systems.
+
+---
+
+## Healthcare Visualization
+
+The dashboard provides:
+
+- real-time wound status visualization
+- patient monitoring analytics
+- wound healing progression charts
+- sensor data history
+- healthcare alerts and notifications
+- remote monitoring support
+
+---
+
+## Remote Monitoring Workflow
+
+1. Patient sensors collect wound data
+2. ESP32 sends data to backend API
+3. Backend processes sensor readings
+4. MongoDB stores monitoring history
+5. Dashboard visualizes wound progression
+6. Healthcare experts review patient status remotely
+7. Alerts are generated for abnormal readings
+
+---
+
 ## Repository Structure
 
 ```bash
@@ -157,6 +204,18 @@ python3 backend/app.py
 ```text
 http://127.0.0.1:5000
 ```
+
+---
+
+## Screenshots
+
+### Backend API Running
+
+<img width="700" alt="Backend API" src="assets/backend-running.png">
+
+### Dashboard Preview
+
+<img width="700" alt="Dashboard Preview" src="assets/dashboard-preview.png">
 
 ---
 
@@ -196,4 +255,4 @@ This project combines concepts from:
 
 ## License
 
-This project is provided as-is for Health monitoring purposes.
+This project is licensed under the MIT License.

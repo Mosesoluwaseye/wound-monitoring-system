@@ -209,13 +209,13 @@ http://127.0.0.1:5000
 
 ## Screenshots
 
-### Backend API Running
-
-<img width="700" alt="Backend API" src="assets/backend-running.png">
-
 ### Dashboard Preview
 
-<img width="700" alt="Dashboard Preview" src="assets/dashboard-preview.png">
+![Dashboard Preview](assets/dashboard-preview.png)
+
+### Expert Monitoring System
+
+![Backend Running](assets/backend-running.png)
 
 ---
 

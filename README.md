@@ -196,4 +196,4 @@ This project combines concepts from:
 
 ## License
 
-This project is licensed under the MIT License.
+This project is provided as-is for Health monitoring purposes.

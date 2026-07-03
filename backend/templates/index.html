@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
+
 
 <title>Wound Monitoring Dashboard</title>
 
+
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+
 </head>
+
 
 
 <body>
 
 
+
 <h1>Wound Monitoring Dashboard</h1>
+
 
 
 <div class="card">
 
+
 <h2>Search Patient</h2>
+
 
 <input 
 type="text" 
@@ -33,6 +46,7 @@ Search Patient
 </button>
 
 
+
 <button onclick="loadData()">
 Show All Patients
 </button>
@@ -41,41 +55,82 @@ Show All Patients
 </div>
 
 
+
 <br>
+
 
 
 <div class="summary">
 
+
 <div class="box">
+
 <h3>Total Readings</h3>
+
 <h2 id="total">0</h2>
+
 </div>
 
 
+
 <div class="box">
+
 <h3>Latest Patient</h3>
+
 <h2 id="latestPatient">-</h2>
+
 </div>
+
 
 
 <div class="box">
+
 <h3>Latest Status</h3>
+
 <h2 id="latestStatus">-</h2>
-</div>
 
 </div>
+
+
+</div>
+
+
 
 
 <div class="card">
 
+
 <div id="patientArea"></div>
 
+
 </div>
+
+
+
+<div class="card">
+
+
+<h2>D3.js Wound Temperature Visualization</h2>
+
+
+<p>
+Interactive temperature chart generated from live sensor JSON data.
+</p>
+
+
+<div id="d3Chart"></div>
+
+
+</div>
+
+
 
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 
+
 </body>
+
 
 </html>

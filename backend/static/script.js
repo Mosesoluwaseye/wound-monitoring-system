@@ -9,6 +9,8 @@ function loadData() {
 
         displayPatients(data);
 
+        loadD3Chart();
+
     });
 
 }
@@ -43,7 +45,7 @@ function displayPatients(data){
 
         <hr>
 
-        <h2>Temperature History</h2>
+        <h2>Temperature History (Chart.js)</h2>
 
         <canvas id="temperatureChart"></canvas>
 
@@ -70,7 +72,6 @@ function displayPatients(data){
 
 
         let badge = "";
-
 
 
         if(patient.status.toLowerCase() === "stable"){
@@ -100,24 +101,17 @@ function displayPatients(data){
 
             <p><strong>Patient ID:</strong> ${patient.patient_id}</p>
 
-
             <p><strong>Name:</strong> ${patient.patient_name}</p>
-
 
             <p><strong>Age:</strong> ${patient.age}</p>
 
-
             <p><strong>Wound Location:</strong> ${patient.wound_location}</p>
-
 
             <p><strong>Temperature:</strong> ${patient.temperature} °C</p>
 
-
             <p><strong>Moisture:</strong> ${patient.moisture}%</p>
 
-
             <p><strong>Status:</strong> ${badge}</p>
-
 
             <p><strong>Recorded:</strong> ${patient.created_at}</p>
 
@@ -137,7 +131,6 @@ function displayPatients(data){
 
 
     const ctx = document.getElementById("temperatureChart");
-
 
 
     if(chart){
@@ -193,7 +186,6 @@ function searchPatient(){
     .toLowerCase();
 
 
-
     fetch("/sensor-data")
     .then(response => response.json())
     .then(data => {
@@ -209,6 +201,8 @@ function searchPatient(){
 
 
         displayPatients(filtered);
+
+        loadD3Chart();
 
 
     });
@@ -246,6 +240,102 @@ function deletePatient(id){
 
 
     }
+
+
+}
+
+
+
+// =================================
+// D3.js Interactive Visualization
+// =================================
+
+
+function loadD3Chart(){
+
+
+    fetch("/sensor-data")
+    .then(response => response.json())
+    .then(data => {
+
+
+        d3.select("#d3Chart").html("");
+
+
+
+        const width = 600;
+
+        const height = 300;
+
+
+
+        const svg = d3.select("#d3Chart")
+
+        .append("svg")
+
+        .attr("width", width)
+
+        .attr("height", height);
+
+
+
+        const xScale = d3.scaleBand()
+
+        .domain(data.map(patient => patient.patient_id))
+
+        .range([50, width - 30])
+
+        .padding(0.3);
+
+
+
+        const yScale = d3.scaleLinear()
+
+        .domain([0,45])
+
+        .range([height - 40,20]);
+
+
+
+        svg.selectAll("rect")
+
+        .data(data)
+
+        .enter()
+
+        .append("rect")
+
+        .attr("x", patient => xScale(patient.patient_id))
+
+        .attr("y", patient => yScale(patient.temperature))
+
+        .attr("width", xScale.bandwidth())
+
+        .attr(
+            "height",
+
+            patient => height - 40 - yScale(patient.temperature)
+
+        );
+
+
+
+        svg.selectAll("text")
+
+        .data(data)
+
+        .enter()
+
+        .append("text")
+
+        .text(patient => patient.temperature + "°C")
+
+        .attr("x", patient => xScale(patient.patient_id))
+
+        .attr("y", patient => yScale(patient.temperature) - 5);
+
+
+    });
 
 
 }

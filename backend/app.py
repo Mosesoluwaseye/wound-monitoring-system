@@ -24,14 +24,12 @@ with app.app_context():
 
 @app.route("/")
 def home():
-
     return render_template("index.html")
 
 
 
 @app.route("/register")
 def register_page():
-
     return render_template("register.html")
 
 
@@ -39,23 +37,14 @@ def register_page():
 @app.route("/register", methods=["POST"])
 def register_patient():
 
-
     reading = SensorData(
-
         patient_id=request.form["patient_id"],
-
         patient_name=request.form["patient_name"],
-
         age=int(request.form["age"]),
-
         wound_location=request.form["wound_location"],
-
         temperature=float(request.form["temperature"]),
-
         moisture=int(request.form["moisture"]),
-
         status=request.form["status"]
-
     )
 
 
@@ -68,22 +57,125 @@ def register_patient():
 
 
 
-
 @app.route("/sensor-data", methods=["GET"])
 def get_sensor_data():
+
+    readings = SensorData.query.all()
+
+    return jsonify([reading.to_dict() for reading in readings])
+
+
+
+@app.route("/fhir-data", methods=["GET"])
+def get_fhir_data():
 
 
     readings = SensorData.query.all()
 
 
-    return jsonify([reading.to_dict() for reading in readings])
+    fhir_data = []
+
+
+    for reading in readings:
+
+
+        observation = {
+
+            "resourceType": "Observation",
+
+            "status": "final",
+
+            "category": [
+                {
+                    "text": "Wound Monitoring"
+                }
+            ],
+
+
+            "code": {
+                "text": "Wound Sensor Measurement"
+            },
+
+
+            "subject": {
+
+                "reference": "Patient/" + reading.patient_id,
+
+                "display": reading.patient_name
+
+            },
+
+
+            "component": [
+
+
+                {
+
+                    "code": {
+
+                        "text": "Temperature"
+
+                    },
+
+
+                    "valueQuantity": {
+
+                        "value": reading.temperature,
+
+                        "unit": "Celsius"
+
+                    }
+
+                },
+
+
+                {
+
+                    "code": {
+
+                        "text": "Moisture"
+
+                    },
+
+
+                    "valueQuantity": {
+
+                        "value": reading.moisture,
+
+                        "unit": "%"
+
+                    }
+
+                }
+
+            ],
+
+
+            "effectiveDateTime":
+            reading.created_at.strftime("%Y-%m-%d %H:%M:%S")
+
+        }
+
+
+        fhir_data.append(observation)
+
+
+
+    return jsonify({
+
+        "resourceType": "Bundle",
+
+        "type": "collection",
+
+        "entry": fhir_data
+
+    })
 
 
 
 
 @app.route("/sensor-data", methods=["POST"])
 def add_sensor_data():
-
 
     data = request.get_json()
 
@@ -120,7 +212,6 @@ def add_sensor_data():
 
 
 
-
 @app.route("/delete/<int:id>", methods=["DELETE"])
 def delete_patient(id):
 
@@ -132,7 +223,6 @@ def delete_patient(id):
 
 
         db.session.delete(reading)
-
 
         db.session.commit()
 
@@ -149,8 +239,6 @@ def delete_patient(id):
         "message": "Patient not found"
 
     })
-
-
 
 
 
@@ -189,7 +277,6 @@ def add_test_data():
 
 
     temperature = round(random.uniform(36.5, 40.5), 1)
-
 
     moisture = random.randint(30, 80)
 
@@ -231,7 +318,6 @@ def add_test_data():
 
 
     db.session.add(reading)
-
 
     db.session.commit()
 

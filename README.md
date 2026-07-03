@@ -1,258 +1,142 @@
 # Wound Monitoring System
 
-![Python](https://img.shields.io/badge/Python-Backend-blue)
-![Flask](https://img.shields.io/badge/Flask-API-black)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
-![IoT](https://img.shields.io/badge/IoT-Healthcare-orange)
+## Project Description
 
-Real-time IoT wound monitoring and healthcare visualization system using sensors, backend APIs, and live dashboards.
+The Wound Monitoring System is an interactive healthcare monitoring application designed to visualize wound sensor data.
 
----
+The system collects patient wound information such as temperature, moisture level, wound location, and healing status.
 
-## Project Overview
+Healthcare providers can register patients, monitor wound conditions, search patient records, and view sensor data through a dashboard.
 
-This project focuses on improving chronic wound monitoring through digital healthcare technologies and IoT-based sensor systems.
-
-The system is designed to:
-
-- monitor wound conditions in real time
-- visualize sensor data
-- support healthcare professionals remotely
-- improve patient monitoring efficiency
-
----
 
 ## Features
 
-- Real-time sensor monitoring
-- Wound image documentation
-- Interactive dashboard
-- Progress tracking
-- Backend APIs
-- Healthcare visualization
-- Secure authentication
-- Data analytics
-- Real-time communication
-- Sensor simulation support
+- Patient registration system
+- Real-time wound monitoring dashboard
+- Temperature tracking
+- Moisture monitoring
+- Patient search functionality
+- Delete patient records
+- Status classification:
+  - Stable
+  - Warning
+  - Critical
+- Interactive temperature chart visualization
 
----
 
-## Technologies
-
-### Hardware
-
-- ESP32
-- Temperature Sensors
-- Moisture Sensors
+## Technologies Used
 
 ### Backend
-
+- Python
 - Flask
-- FastAPI
-- MongoDB
-- MQTT
-- Flask-SocketIO
-- JWT Authentication
+- Flask SQLAlchemy
+- SQLite Database
+- REST API
 
 ### Frontend
-
-- React
-- Chart.js
-- HTML/CSS
+- HTML
+- CSS
 - JavaScript
+- Chart.js
 
----
-
-## Backend Service
-
-This backend handles:
-
-- sensor data collection
-- API communication
-- authentication
-- MongoDB storage
-- MQTT messaging
-- real-time sensor updates
-
----
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|---|---|---|
-| `/` | GET | Backend status |
-| `/api/data` | GET | Retrieve sensor readings |
-| `/api/data` | POST | Send new sensor readings |
-| `/patients` | GET | Retrieve patient information |
-| `/analytics` | GET | Retrieve healthcare analytics |
-
----
-
-## Example Sensor Data
-
-```json
-{
-  "patient_id": "P001",
-  "temperature": 37.5,
-  "moisture": 62,
-  "status": "stable"
-}
-```
-
----
 
 ## System Architecture
 
-Sensors  
-↓  
-ESP32 Microcontroller  
-↓  
-Flask Backend API  
-↓  
-MongoDB Database  
-↓  
-React Dashboard  
-↓  
-Real-Time Healthcare Visualization
+Sensor Data Collection
 
----
+↓
 
-## Project Workflow
+Flask Backend API
 
-1. Sensors collect wound data
-2. ESP32 sends sensor readings
-3. Backend API processes incoming data
-4. MongoDB stores patient readings
-5. Dashboard visualizes healthcare data
-6. Healthcare staff monitor wound conditions remotely
+↓
 
----
+SQLite Database
 
-## Expert Monitoring System
+↓
 
-The platform supports remote healthcare supervision through expert-assisted wound monitoring.
+Frontend Dashboard
 
-Healthcare professionals can:
+↓
 
-- review wound sensor readings remotely
-- monitor patient healing progress
-- analyze wound temperature and moisture levels
-- receive abnormal condition alerts
-- document wound progression using images
-- track patient recovery over time
+Real-Time Data Visualization
 
-The system is designed to improve communication between patients and healthcare professionals through digital healthcare technologies and real-time monitoring systems.
 
----
+## Database Information
 
-## Healthcare Visualization
+The database stores:
 
-The dashboard provides:
+- Patient ID
+- Patient Name
+- Age
+- Wound Location
+- Temperature Reading
+- Moisture Level
+- Wound Status
+- Date and Time
 
-- real-time wound status visualization
-- patient monitoring analytics
-- wound healing progression charts
-- sensor data history
-- healthcare alerts and notifications
-- remote monitoring support
 
----
+## API Endpoints
 
-## Remote Monitoring Workflow
+### View Sensor Data
 
-1. Patient sensors collect wound data
-2. ESP32 sends data to backend API
-3. Backend processes sensor readings
-4. MongoDB stores monitoring history
-5. Dashboard visualizes wound progression
-6. Healthcare experts review patient status remotely
-7. Alerts are generated for abnormal readings
+GET
 
----
+/sensor-data
 
-## Repository Structure
 
-```bash
-docs/
-backend/
-frontend/
-hardware/
-database/
-sensor-data/
-diagrams/
-assets/
-```
+### Add Sensor Reading
 
----
+POST
 
-## Setup Guide
+/sensor-data
 
-### Install Dependencies
 
-```bash
-pip3 install flask flask-socketio flask-cors
-```
+### Register Patient
 
-### Run Backend Server
+/register
 
-```bash
-python3 backend/app.py
-```
 
-### Open Local Server
+### Delete Record
 
-```text
+/delete/<id>
+
+
+## How To Run The Project
+
+Clone the repository:
+
+git clone https://github.com/Mosesoluwaseye/wound-monitoring-system.git
+
+
+Move into backend folder:
+
+cd backend
+
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+
+Run Flask:
+
+python3 app.py
+
+
+Open browser:
+
 http://127.0.0.1:5000
-```
 
----
-
-## Screenshots
-
-### Dashboard Preview
-
-![Dashboard Preview](assets/dashboard-preview.png)
-
-### Expert Monitoring System
-
-![Backend Running](assets/backend-running.png)
-
----
 
 ## Future Improvements
 
-- AI-based wound prediction
-- Secure messaging
-- Real-time video consultation
-- Mobile application support
-- Wearable sensor integration
-- Cloud deployment
-- MQTT live device communication
-- Advanced healthcare analytics
-- Doctor notification alerts
+- Connect physical IoT sensors
+- Add user authentication
+- Add cloud database storage
+- Deploy online
+- Add mobile application support
 
----
 
-## Research & Academic Focus
+## Project Purpose
 
-This project combines concepts from:
-
-- Internet of Things (IoT)
-- Digital Healthcare
-- Real-Time Data Visualization
-- Remote Patient Monitoring
-- Embedded Systems
-- Backend API Development
-- Healthcare Analytics
-
----
-
-## Authors
-
-- Oluwaseye Moses
-
----
-
-## License
-
-This project is licensed under the MIT License.
+This project demonstrates how digital health technologies can support wound monitoring through data collection, analysis, and visualization.

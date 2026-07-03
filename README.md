@@ -9,6 +9,8 @@ The system collects patient wound information such as temperature, moisture leve
 
 Healthcare providers can register patients, monitor wound conditions, search patient records, remove outdated records, and view sensor data through an interactive dashboard.
 
+The application also supports healthcare data exchange concepts using FHIR-style JSON formatting for wound sensor observations.
+
 
 ## Features
 
@@ -19,12 +21,13 @@ Healthcare providers can register patients, monitor wound conditions, search pat
 - Patient search functionality
 - Delete patient records
 - Automatic dashboard updates
-- Interactive data visualization
+- Healthcare FHIR JSON data format support
+- Chart.js temperature history visualization
+- Interactive D3.js sensor visualization
 - Status classification:
   - Stable
   - Warning
   - Critical
-- Temperature history chart
 
 
 ## Technologies Used
@@ -37,6 +40,7 @@ Healthcare providers can register patients, monitor wound conditions, search pat
 - Flask SQLAlchemy
 - SQLite Database
 - REST API
+- FHIR JSON Structure
 
 
 ### Frontend
@@ -45,6 +49,7 @@ Healthcare providers can register patients, monitor wound conditions, search pat
 - CSS
 - JavaScript
 - Chart.js
+- D3.js
 
 
 ## System Architecture
@@ -62,6 +67,10 @@ SQLite Database
 
 ↓
 
+FHIR JSON API Response
+
+↓
+
 REST API Communication
 
 ↓
@@ -70,7 +79,7 @@ Frontend Dashboard
 
 ↓
 
-Real-Time Data Visualization
+Chart.js and D3.js Visualization
 
 
 
@@ -104,6 +113,13 @@ GET
 GET
 
 /sensor-data
+
+
+### Healthcare FHIR Sensor Data
+
+GET
+
+/fhir-data
 
 
 ### Add Sensor Reading
@@ -144,6 +160,22 @@ DELETE
 ### Temperature Visualization
 
 ![Temperature Chart](docs/images/chart.png)
+
+
+
+## Data Visualization
+
+The system includes two visualization approaches:
+
+
+### Chart.js
+
+Displays wound temperature history using a line graph.
+
+
+### D3.js
+
+Provides an interactive visualization of wound sensor measurements generated from live JSON healthcare data.
 
 
 
@@ -210,6 +242,10 @@ wound-monitoring-system
 
 │
 
+├── database
+
+│
+
 ├── diagrams
 
 │   └── system-architecture.md
@@ -219,6 +255,10 @@ wound-monitoring-system
 ├── docs
 
 │   └── images
+
+│
+
+├── frontend
 
 │
 
@@ -235,10 +275,11 @@ wound-monitoring-system
 - Deploy the application online
 - Add mobile application support
 - Add advanced wound healing predictions
+- Add healthcare system integration
 
 
 ## Project Purpose
 
-This project demonstrates how digital health technologies can support wound monitoring using sensor data collection, database management, and real-time healthcare visualization.
+This project demonstrates how digital health technologies can support wound monitoring using sensor data collection, database management, healthcare data formatting, and real-time visualization.
 
-The system shows how healthcare providers can track wound conditions and identify possible complications through digital monitoring.
+The system shows how healthcare providers can track wound conditions, analyze sensor measurements, and identify possible complications through digital monitoring.

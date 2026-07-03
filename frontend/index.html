@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wound Monitoring Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Wound Monitoring Dashboard</h1>
+
+    <div class="card">
+
+        <h2>Latest Reading</h2>
+
+        <p><strong>Patient:</strong> <span id="patient"></span></p>
+
+        <p><strong>Temperature:</strong> <span id="temperature"></span> °C</p>
+
+        <p><strong>Moisture:</strong> <span id="moisture"></span> %</p>
+
+        <p><strong>Status:</strong> <span id="status"></span></p>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

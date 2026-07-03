@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register Patient</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Register New Patient</h1>
+
+<div class="card">
+
+<form action="/register" method="POST">
+
+<p>
+<label><strong>Patient ID</strong></label><br>
+<input type="text" name="patient_id" required>
+</p>
+
+<p>
+<label><strong>Patient Name</strong></label><br>
+<input type="text" name="patient_name" required>
+</p>
+
+<p>
+<label><strong>Age</strong></label><br>
+<input type="number" name="age" required>
+</p>
+
+<p>
+<label><strong>Wound Location</strong></label><br>
+<input type="text" name="wound_location" required>
+</p>
+
+<p>
+<label><strong>Temperature (°C)</strong></label><br>
+<input type="number" step="0.1" name="temperature" required>
+</p>
+
+<p>
+<label><strong>Moisture (%)</strong></label><br>
+<input type="number" name="moisture" required>
+</p>
+
+<p>
+<label><strong>Status</strong></label><br>
+
+<select name="status">
+
+<option value="stable">Stable</option>
+
+<option value="warning">Warning</option>
+
+<option value="critical">Critical</option>
+
+</select>
+
+</p>
+
+<p>
+
+<button type="submit">
+
+Register Patient
+
+</button>
+
+</p>
+
+</form>
+
+</div>
+
+</body>
+</html>

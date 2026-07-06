@@ -1,6 +1,21 @@
 # Wound Monitoring System
 
 
+## Run in GitHub Codespaces
+
+Open this repository using GitHub Codespaces.
+
+Launch the Wound Monitoring System with one command:
+
+```bash
+cd backend && pip install -r requirements.txt && python app.py
+```
+
+After the server starts, open the forwarded port 5000 URL provided by GitHub Codespaces.
+
+The application dashboard will open in the browser.
+
+
 ## Project Description
 
 The Wound Monitoring System is an interactive healthcare monitoring application designed to visualize wound sensor data.
@@ -179,37 +194,35 @@ Provides an interactive visualization of wound sensor measurements generated fro
 
 
 
-## How To Run The Project
+## Local Installation
 
 
 Clone the repository:
 
+```bash
 git clone https://github.com/Mosesoluwaseye/wound-monitoring-system.git
+```
 
 
 Move into the project folder:
 
+```bash
 cd wound-monitoring-system
+```
 
 
-Move into backend folder:
+Run the application:
 
-cd backend
-
-
-Install dependencies:
-
-pip install -r requirements.txt
+```bash
+cd backend && pip install -r requirements.txt && python app.py
+```
 
 
-Start Flask server:
+Open:
 
-python3 app.py
-
-
-Open the application:
-
+```text
 http://127.0.0.1:5000
+```
 
 
 
@@ -230,37 +243,17 @@ wound-monitoring-system
 
 │   ├── static
 
-│   │   ├── style.css
-
-│   │   └── script.js
-
 │   └── templates
-
-│       ├── index.html
-
-│       └── register.html
 
 │
 
 ├── database
 
-│
-
 ├── diagrams
-
-│   └── system-architecture.md
-
-│
 
 ├── docs
 
-│   └── images
-
-│
-
 ├── frontend
-
-│
 
 └── README.md
 

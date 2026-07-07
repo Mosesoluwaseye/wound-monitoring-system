@@ -5,69 +5,55 @@
 
 Open this repository using GitHub Codespaces.
 
-Launch the Wound Monitoring System with one command:
+Install dependencies and launch the Wound Monitoring System:
 
 ```bash
 cd backend && pip install -r requirements.txt && python app.py
 ```
 
-After the server starts:
+After the server starts, GitHub Codespaces will automatically create a forwarded Port 5000 URL.
 
-1. Open the PORTS tab in GitHub Codespaces.
-2. Select port 5000.
-3. Open the forwarded GitHub Codespaces URL.
+Open the Port 5000 forwarded address from the PORTS tab.
 
 Example:
 
 ```text
-https://your-codespace-name-5000.app.github.dev
+https://your-codespace-name-5000.app.github.dev/
 ```
 
-The application dashboard will open in the browser.
-
+The Wound Monitoring Dashboard will open in the browser.
 
 
 ## Project Description
 
 The Wound Monitoring System is an interactive healthcare monitoring application designed to visualize wound sensor data.
 
-The system collects patient wound information including:
+The system manages patient wound information including:
 
-- Temperature
-- Moisture level
+- Temperature readings
+- Moisture levels
 - Wound location
 - Healing status
-- Patient information
 
-Healthcare providers can register patients, monitor wound conditions, search patient records, remove outdated records, and analyze sensor data through an interactive dashboard.
+Healthcare providers can register patients, search records, remove patient information, and monitor wound conditions through an interactive dashboard.
 
-The application supports healthcare data exchange concepts using FHIR-style JSON formatting for wound sensor observations.
-
+The system also demonstrates healthcare interoperability concepts using FHIR-style JSON data formatting.
 
 
 ## Features
 
 - Patient registration system
-- Real-time wound monitoring dashboard
+- Wound monitoring dashboard
 - Temperature tracking
 - Moisture monitoring
 - Patient search functionality
 - Delete patient records
 - Automatic dashboard updates
-- Healthcare FHIR JSON data format support
-- Chart.js temperature history visualization
-- Interactive D3.js sensor visualization
-- REST API communication
-- Automated backend testing
-- GitHub Codespaces support
-
-
-### Wound Status Classification
-
-- Stable
-- Warning
-- Critical
-
+- REST API support
+- Healthcare FHIR JSON response
+- Chart.js temperature visualization
+- D3.js sensor data visualization
+- Automated backend testing with Pytest
 
 
 ## Technologies Used
@@ -78,10 +64,9 @@ The application supports healthcare data exchange concepts using FHIR-style JSON
 - Python
 - Flask
 - Flask SQLAlchemy
-- SQLite Database
+- SQLite
 - REST API
-- FHIR JSON Structure
-- Pytest
+- FHIR JSON
 
 
 ### Frontend
@@ -93,19 +78,13 @@ The application supports healthcare data exchange concepts using FHIR-style JSON
 - D3.js
 
 
-### Development Tools
+### Testing
 
-- Git
-- GitHub
-- GitHub Codespaces
-- VS Code
-
+- Pytest
 
 
 ## System Architecture
 
-
-```text
 Sensor Data Collection
 
 ↓
@@ -118,11 +97,7 @@ SQLite Database
 
 ↓
 
-FHIR JSON API Response
-
-↓
-
-REST API Communication
+FHIR JSON API
 
 ↓
 
@@ -131,67 +106,75 @@ Frontend Dashboard
 ↓
 
 Chart.js and D3.js Visualization
-```
 
 
 
 ## Database Information
 
-The database stores:
+Stored patient data:
 
 - Patient ID
 - Patient Name
-- Patient Age
+- Age
 - Wound Location
-- Temperature Reading
+- Temperature
 - Moisture Level
 - Wound Status
-- Date and Time Created
+- Creation Time
 
 
 
 ## API Endpoints
 
 
-### Home Dashboard
+### Dashboard
 
-```text
 GET /
-```
+
+Displays the main monitoring dashboard.
 
 
-### View Sensor Data
+### Sensor Data API
 
-```text
 GET /sensor-data
-```
+
+Returns wound sensor information in JSON format.
 
 
-### Healthcare FHIR Sensor Data
+### Healthcare FHIR Data
 
-```text
 GET /fhir-data
-```
+
+Returns healthcare observation data using FHIR-style JSON.
 
 
-### Add Sensor Reading
+### Patient Registration
 
-```text
-POST /sensor-data
-```
+GET /register
 
-
-### Register Patient
-
-```text
-GET / POST /register
-```
+POST /register
 
 
-### Delete Patient Record
+### Delete Patient
 
-```text
 DELETE /delete/<id>
+
+
+
+## Automated Testing
+
+The project includes backend tests.
+
+Run:
+
+```bash
+pytest -v
+```
+
+Expected result:
+
+```text
+3 passed
 ```
 
 
@@ -204,9 +187,9 @@ DELETE /delete/<id>
 ![Dashboard](dashboard-preview.png)
 
 
-### Backend Running
+### Backend Running Successfully
 
-![Backend](backend-running.png)
+![Backend Running](backend-running.png)
 
 
 
@@ -215,17 +198,16 @@ DELETE /delete/<id>
 
 ### Chart.js
 
-Displays wound temperature history using an interactive line graph.
+Displays wound temperature history using charts.
 
 
 ### D3.js
 
-Creates dynamic visualization from live wound sensor JSON data.
+Creates interactive visualization from live sensor JSON data.
 
 
 
 ## Local Installation
-
 
 Clone repository:
 
@@ -233,139 +215,77 @@ Clone repository:
 git clone https://github.com/Mosesoluwaseye/wound-monitoring-system.git
 ```
 
-
-Open project:
+Move into project:
 
 ```bash
 cd wound-monitoring-system
 ```
 
-
-Install requirements and start application:
+Start application:
 
 ```bash
 cd backend && pip install -r requirements.txt && python app.py
 ```
 
 
-Open:
+For local computers open:
 
 ```text
 http://127.0.0.1:5000
 ```
 
 
+For GitHub Codespaces:
 
-## Testing
-
-
-This project includes automated backend tests using Pytest.
-
-
-Run tests:
-
-```bash
-pytest
-```
-
-
-Current tests:
-
-- Home dashboard route test
-- Sensor data API test
-- FHIR healthcare API test
-
-
-Successful result:
-
-```text
-3 passed
-```
+Use the forwarded Port 5000 URL.
 
 
 
 ## Project Structure
 
-
 ```text
 wound-monitoring-system
 
 ├── backend
-
 │   ├── app.py
-
 │   ├── database.py
-
 │   ├── models.py
-
 │   ├── static
-
 │   └── templates
 
-
 ├── database
-
-
 ├── diagrams
-
-
 ├── docs
-
-
 ├── frontend
-
-
 ├── hardware
-
-
 ├── sensor-data
-
-
 ├── tests
-
 │   └── test_app.py
 
-
-├── README.md
-
-└── LICENSE
+└── README.md
 ```
-
-
-
-## Development Checklist Completed
-
-- Working Flask application
-- Database integration
-- REST API implementation
-- FHIR-style healthcare JSON response
-- Frontend dashboard
-- Sensor data visualization
-- Chart.js implementation
-- D3.js implementation
-- Automated tests
-- Git version control
-- GitHub repository
-- GitHub Codespaces execution
-- Project documentation
 
 
 
 ## Future Improvements
 
-- Connect physical IoT temperature sensors
-- Connect moisture detection sensors
-- Add user authentication system
-- Add cloud database storage
-- Deploy application online
-- Add mobile application support
-- Add advanced wound healing predictions
-- Add healthcare system integration
+- Connect IoT wound sensors
+- Add authentication system
+- Add cloud database
+- Add deployment server
+- Add mobile support
+- Add wound healing prediction
+- Improve healthcare integration
 
 
 
 ## Project Purpose
 
-This project demonstrates how digital health technologies can support wound monitoring using sensor data collection, database management, healthcare data formatting, and real-time visualization.
+This project demonstrates how digital healthcare applications can support wound monitoring using:
 
-The system shows how healthcare providers can track wound conditions, analyze sensor measurements, and identify possible complications through digital monitoring.
+- Sensor data processing
+- Database management
+- REST APIs
+- Healthcare data formatting
+- Interactive visualization
+- Automated software testing

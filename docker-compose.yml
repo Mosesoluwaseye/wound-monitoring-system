@@ -1,0 +1,6 @@
+services:
+  wound-monitoring-system:
+    build: .
+    ports:
+      - "5000:5000"
+    container_name: wound-monitoring-system

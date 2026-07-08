@@ -78,13 +78,6 @@ The application includes healthcare data exchange concepts using FHIR-style JSON
 - GitHub Codespaces deployment
 
 
-### Wound Status Classification
-
-- Stable
-- Warning
-- Critical
-
-
 
 ## Technologies Used
 
@@ -114,115 +107,8 @@ The application includes healthcare data exchange concepts using FHIR-style JSON
 - Docker
 - Docker Compose
 - Git
-- GitHub
 - GitHub Codespaces
 - VS Code
-
-
-
-## System Architecture
-
-```text
-Sensor Data Collection
-
-↓
-
-Flask Backend API
-
-↓
-
-SQLite Database
-
-↓
-
-FHIR JSON API Response
-
-↓
-
-REST API Communication
-
-↓
-
-Frontend Dashboard
-
-↓
-
-Chart.js and D3.js Visualization
-```
-
-
-
-## Database Information
-
-The database stores:
-
-- Patient ID
-- Patient Name
-- Patient Age
-- Wound Location
-- Temperature Reading
-- Moisture Level
-- Wound Status
-- Date and Time Created
-
-
-
-## API Endpoints
-
-
-### Dashboard
-
-```text
-GET /
-```
-
-Displays the wound monitoring dashboard.
-
-
-
-### Sensor Data API
-
-```text
-GET /sensor-data
-```
-
-Returns wound sensor information.
-
-
-
-### FHIR Healthcare Data
-
-```text
-GET /fhir-data
-```
-
-Returns healthcare observation data using FHIR-style JSON.
-
-
-
-### Add Sensor Reading
-
-```text
-POST /sensor-data
-```
-
-
-
-### Patient Registration
-
-```text
-GET /register
-
-POST /register
-```
-
-
-
-### Delete Patient Record
-
-```text
-DELETE /delete/<id>
-```
 
 
 
@@ -231,12 +117,17 @@ DELETE /delete/<id>
 
 ### Wound Monitoring Dashboard
 
-![Dashboard](dashboard-preview.png)
+![Wound Monitoring Dashboard](dashboard-preview.png)
 
 
-### Backend Running Successfully
+### Chart.js Temperature Monitoring and D3.js Visualization
 
-![Backend](backend-running.png)
+![Data Visualization](visualization-preview.png)
+
+
+### Docker Backend Running Successfully
+
+![Docker Backend](backend-running.png)
 
 
 
@@ -251,6 +142,54 @@ Displays wound temperature history using interactive charts.
 ### D3.js
 
 Creates dynamic visualization using live wound sensor JSON data.
+
+
+
+## API Endpoints
+
+
+### Dashboard
+
+```text
+GET /
+```
+
+
+### Sensor Data API
+
+```text
+GET /sensor-data
+```
+
+
+### FHIR Healthcare Data
+
+```text
+GET /fhir-data
+```
+
+
+### Add Sensor Reading
+
+```text
+POST /sensor-data
+```
+
+
+### Patient Registration
+
+```text
+GET /register
+
+POST /register
+```
+
+
+### Delete Patient Record
+
+```text
+DELETE /delete/<id>
+```
 
 
 
@@ -288,12 +227,17 @@ http://localhost:5000
 
 ## Automated Testing
 
-The project includes automated backend tests using Pytest.
-
 Run:
 
 ```bash
 pytest -v
+```
+
+
+Successful test result:
+
+```text
+3 passed
 ```
 
 
@@ -302,13 +246,6 @@ Current tests:
 - Home dashboard route test
 - Sensor data API test
 - FHIR healthcare API test
-
-
-Successful test result:
-
-```text
-3 passed
-```
 
 
 
@@ -324,13 +261,13 @@ wound-monitoring-system
 │   ├── static
 │   └── templates
 
+├── frontend
+
 ├── database
 
 ├── diagrams
 
 ├── docs
-
-├── frontend
 
 ├── hardware
 
@@ -342,6 +279,12 @@ wound-monitoring-system
 ├── Dockerfile
 
 ├── docker-compose.yml
+
+├── dashboard-preview.png
+
+├── visualization-preview.png
+
+├── backend-running.png
 
 ├── README.md
 

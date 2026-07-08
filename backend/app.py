@@ -3,6 +3,7 @@ from flask_cors import CORS
 from database import db
 from models import SensorData
 import random
+import os
 
 
 app = Flask(__name__)
@@ -47,11 +48,8 @@ def register_patient():
         status=request.form["status"]
     )
 
-
     db.session.add(reading)
-
     db.session.commit()
-
 
     return redirect("/")
 
@@ -69,15 +67,11 @@ def get_sensor_data():
 @app.route("/fhir-data", methods=["GET"])
 def get_fhir_data():
 
-
     readings = SensorData.query.all()
-
 
     fhir_data = []
 
-
     for reading in readings:
-
 
         observation = {
 
@@ -91,74 +85,47 @@ def get_fhir_data():
                 }
             ],
 
-
             "code": {
                 "text": "Wound Sensor Measurement"
             },
-
 
             "subject": {
 
                 "reference": "Patient/" + reading.patient_id,
 
                 "display": reading.patient_name
-
             },
-
 
             "component": [
 
-
                 {
-
                     "code": {
-
                         "text": "Temperature"
-
                     },
 
-
                     "valueQuantity": {
-
                         "value": reading.temperature,
-
                         "unit": "Celsius"
-
                     }
-
                 },
 
-
                 {
-
                     "code": {
-
                         "text": "Moisture"
-
                     },
 
-
                     "valueQuantity": {
-
                         "value": reading.moisture,
-
                         "unit": "%"
-
                     }
-
                 }
-
             ],
-
 
             "effectiveDateTime":
             reading.created_at.strftime("%Y-%m-%d %H:%M:%S")
-
         }
 
-
         fhir_data.append(observation)
-
 
 
     return jsonify({
@@ -168,7 +135,6 @@ def get_fhir_data():
         "type": "collection",
 
         "entry": fhir_data
-
     })
 
 
@@ -178,7 +144,6 @@ def get_fhir_data():
 def add_sensor_data():
 
     data = request.get_json()
-
 
     reading = SensorData(
 
@@ -195,19 +160,14 @@ def add_sensor_data():
         moisture=data["moisture"],
 
         status=data["status"]
-
     )
 
-
     db.session.add(reading)
-
     db.session.commit()
-
 
     return jsonify({
 
         "message": "Sensor data saved successfully!"
-
     })
 
 
@@ -215,29 +175,22 @@ def add_sensor_data():
 @app.route("/delete/<int:id>", methods=["DELETE"])
 def delete_patient(id):
 
-
     reading = SensorData.query.get(id)
-
 
     if reading:
 
-
         db.session.delete(reading)
-
         db.session.commit()
-
 
         return jsonify({
 
             "message": "Patient deleted successfully"
-
         })
 
 
     return jsonify({
 
         "message": "Patient not found"
-
     })
 
 
@@ -245,34 +198,21 @@ def delete_patient(id):
 @app.route("/add-test-data")
 def add_test_data():
 
-
     names = [
-
         "John Doe",
-
         "Mary Smith",
-
         "Michael Brown",
-
         "Sarah Johnson",
-
         "David Wilson"
-
     ]
 
 
     wounds = [
-
         "Left Foot",
-
         "Right Foot",
-
         "Left Leg",
-
         "Right Leg",
-
         "Left Arm"
-
     ]
 
 
@@ -281,16 +221,13 @@ def add_test_data():
     moisture = random.randint(30, 80)
 
 
-
     if temperature < 37.8:
 
         status = "stable"
 
-
     elif temperature < 39:
 
         status = "warning"
-
 
     else:
 
@@ -313,14 +250,11 @@ def add_test_data():
         moisture=moisture,
 
         status=status
-
     )
 
 
     db.session.add(reading)
-
     db.session.commit()
-
 
 
     return jsonify({
@@ -328,12 +262,16 @@ def add_test_data():
         "message": "Random patient added successfully!",
 
         "patient": reading.to_dict()
-
     })
-
 
 
 
 if __name__ == "__main__":
 
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=True
+    )

@@ -30,8 +30,7 @@ with app.app_context():
 # ===============================
 
 MODEL_PATH = os.path.join(
-    os.path.dirname(__file__),
-    "..",
+    os.getcwd(),
     "ml",
     "wound_classifier.pkl"
 )
@@ -119,13 +118,10 @@ async def get_sensor_data():
 
 
     return jsonify(
-
         [
             reading.to_dict()
-
             for reading in readings
         ]
-
     )
 
 
@@ -172,13 +168,11 @@ async def add_sensor_data():
 
 
     return jsonify(
-
         {
             "message": "Sensor data saved successfully",
 
             "prediction": status
         }
-
     )
 
 
@@ -195,7 +189,6 @@ async def get_fhir_data():
 
     for reading in readings:
 
-
         observation = {
 
             "resourceType": "Observation",
@@ -203,9 +196,7 @@ async def get_fhir_data():
             "status": "final",
 
             "code": {
-
                 "text": "Wound Sensor Measurement"
-
             },
 
 
@@ -222,10 +213,9 @@ async def get_fhir_data():
                 {
 
                     "code": {
-
                         "text": "Temperature"
-
                     },
+
 
                     "valueQuantity": {
 
@@ -233,16 +223,16 @@ async def get_fhir_data():
 
                         "unit": "Celsius"
                     }
+
                 },
 
 
                 {
 
                     "code": {
-
                         "text": "Moisture"
-
                     },
+
 
                     "valueQuantity": {
 
@@ -250,6 +240,7 @@ async def get_fhir_data():
 
                         "unit": "%"
                     }
+
                 }
 
             ],
@@ -263,17 +254,12 @@ async def get_fhir_data():
         fhir_data.append(observation)
 
 
-
     return jsonify(
-
         {
-
             "resourceType": "Bundle",
 
             "entry": fhir_data
-
         }
-
     )
 
 
@@ -293,20 +279,16 @@ async def delete_patient(id):
 
 
         return jsonify(
-
             {
                 "message": "Patient deleted successfully"
             }
-
         )
 
 
     return jsonify(
-
         {
             "message": "Patient not found"
         }
-
     )
 
 
@@ -348,7 +330,6 @@ async def add_test_data():
         moisture=moisture,
 
         status=status
-
     )
 
 
@@ -357,17 +338,12 @@ async def add_test_data():
     db.session.commit()
 
 
-
     return jsonify(
-
         {
-
             "message": "ML sensor prediction saved",
 
             "data": reading.to_dict()
-
         }
-
     )
 
 

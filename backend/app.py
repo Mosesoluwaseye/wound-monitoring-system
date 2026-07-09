@@ -71,8 +71,7 @@ def register_page():
 
 
 @app.route("/register", methods=["POST"])
-def register_patient():
-
+async def register_patient():
 
     temperature = float(request.form["temperature"])
 
@@ -114,8 +113,7 @@ def register_patient():
 
 
 @app.route("/sensor-data", methods=["GET"])
-def get_sensor_data():
-
+async def get_sensor_data():
 
     readings = SensorData.query.all()
 
@@ -134,8 +132,7 @@ def get_sensor_data():
 
 
 @app.route("/sensor-data", methods=["POST"])
-def add_sensor_data():
-
+async def add_sensor_data():
 
     data = request.get_json()
 
@@ -188,8 +185,7 @@ def add_sensor_data():
 
 
 @app.route("/fhir-data", methods=["GET"])
-def get_fhir_data():
-
+async def get_fhir_data():
 
     readings = SensorData.query.all()
 
@@ -284,14 +280,12 @@ def get_fhir_data():
 
 
 @app.route("/delete/<int:id>", methods=["DELETE"])
-def delete_patient(id):
-
+async def delete_patient(id):
 
     reading = SensorData.query.get(id)
 
 
     if reading:
-
 
         db.session.delete(reading)
 
@@ -319,8 +313,7 @@ def delete_patient(id):
 
 
 @app.route("/add-test-data")
-def add_test_data():
-
+async def add_test_data():
 
     temperature = round(
         random.uniform(36.5, 40.5),
@@ -381,7 +374,6 @@ def add_test_data():
 
 
 if __name__ == "__main__":
-
 
     port = int(
         os.environ.get(

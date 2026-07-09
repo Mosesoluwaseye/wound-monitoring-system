@@ -32,10 +32,10 @@ After the server starts:
 4. Open the forwarded GitHub Codespaces URL.
 
 
-Example Codespaces URL:
+Live Codespaces Application:
 
 ```text
-https://your-codespace-name-5000.app.github.dev/
+https://didactic-carnival-jjj5g755px5vfj596-5000.app.github.dev/
 ```
 
 
@@ -56,7 +56,7 @@ The system records:
 - Healing status
 
 
-Healthcare providers can register patients, monitor wound conditions, search records, remove outdated information, and analyze wound sensor data through an interactive dashboard.
+Healthcare providers can register patients, monitor wound conditions, search patient records, delete outdated records, and analyze wound sensor data through an interactive dashboard.
 
 The application demonstrates healthcare data exchange concepts using FHIR-style JSON observation formatting.
 
@@ -77,6 +77,7 @@ The application demonstrates healthcare data exchange concepts using FHIR-style 
 - D3.js interactive visualization
 - Automated backend testing
 - Docker container support
+- One-command Docker startup
 - GitHub Codespaces deployment
 
 
@@ -109,6 +110,7 @@ The application demonstrates healthcare data exchange concepts using FHIR-style 
 - Docker
 - Docker Compose
 - Git
+- GitHub
 - GitHub Codespaces
 - VS Code
 
@@ -154,13 +156,15 @@ GET /
 Displays the wound monitoring dashboard.
 
 
+
 ### Sensor Data API
 
 ```text
 GET /sensor-data
 ```
 
-Returns wound sensor information.
+Returns wound sensor information in JSON format.
+
 
 
 ### FHIR Healthcare Data
@@ -172,11 +176,13 @@ GET /fhir-data
 Returns healthcare observation data using FHIR-style JSON.
 
 
+
 ### Add Sensor Reading
 
 ```text
 POST /sensor-data
 ```
+
 
 
 ### Patient Registration
@@ -186,6 +192,7 @@ GET /register
 
 POST /register
 ```
+
 
 
 ### Delete Patient Record
@@ -213,7 +220,7 @@ cd wound-monitoring-system
 ```
 
 
-Start application:
+Start the application:
 
 ```bash
 docker compose up --build
@@ -230,6 +237,8 @@ http://localhost:5000
 
 ## Automated Testing
 
+This project includes automated backend tests using Pytest.
+
 Run:
 
 ```bash
@@ -237,14 +246,14 @@ pytest -v
 ```
 
 
-Successful test result:
+Successful result:
 
 ```text
 3 passed
 ```
 
 
-Current tests:
+Tests included:
 
 - Home dashboard route test
 - Sensor data API test
@@ -300,16 +309,16 @@ wound-monitoring-system
 - Database integration
 - REST API implementation
 - FHIR-style healthcare JSON response
-- Frontend dashboard
+- Frontend dashboard implementation
 - Sensor data visualization
 - Chart.js implementation
 - D3.js implementation
 - Automated Pytest testing
 - Docker containerization
-- Docker Compose one-command startup
+- Docker Compose configuration
+- One-command Codespaces startup
 - Git version control
-- GitHub repository
-- GitHub Codespaces support
+- GitHub repository management
 - Project documentation
 
 

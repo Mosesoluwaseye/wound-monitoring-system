@@ -31,11 +31,13 @@ After the server starts:
 3. Set visibility to Public if required.
 4. Open the forwarded GitHub Codespaces URL.
 
-Current Codespaces application URL:
+
+Example Codespaces URL:
 
 ```text
-https://didactic-carnival-jjj5g755px5vfj596-5000.app.github.dev/
+https://your-codespace-name-5000.app.github.dev/
 ```
+
 
 The Wound Monitoring Dashboard will open in the browser.
 
@@ -54,9 +56,9 @@ The system records:
 - Healing status
 
 
-Healthcare providers can register patients, monitor wound conditions, search records, remove outdated information, and analyze wound sensor data through a dashboard.
+Healthcare providers can register patients, monitor wound conditions, search records, remove outdated information, and analyze wound sensor data through an interactive dashboard.
 
-The application includes healthcare data exchange concepts using FHIR-style JSON observation formatting.
+The application demonstrates healthcare data exchange concepts using FHIR-style JSON observation formatting.
 
 
 
@@ -125,11 +127,6 @@ The application includes healthcare data exchange concepts using FHIR-style JSON
 ![Data Visualization](visualization-preview.png)
 
 
-### Docker Backend Running Successfully
-
-![Docker Backend](backend-running.png)
-
-
 
 ## Data Visualization
 
@@ -154,6 +151,8 @@ Creates dynamic visualization using live wound sensor JSON data.
 GET /
 ```
 
+Displays the wound monitoring dashboard.
+
 
 ### Sensor Data API
 
@@ -161,12 +160,16 @@ GET /
 GET /sensor-data
 ```
 
+Returns wound sensor information.
+
 
 ### FHIR Healthcare Data
 
 ```text
 GET /fhir-data
 ```
+
+Returns healthcare observation data using FHIR-style JSON.
 
 
 ### Add Sensor Reading
@@ -283,8 +286,6 @@ wound-monitoring-system
 ├── dashboard-preview.png
 
 ├── visualization-preview.png
-
-├── backend-running.png
 
 ├── README.md
 

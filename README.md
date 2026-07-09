@@ -10,29 +10,29 @@ https://github.com/Mosesoluwaseye/wound-monitoring-system
 
 Open this repository using GitHub Codespaces.
 
-Launch the Wound Monitoring System with one command:
+Launch the Wound Monitoring System:
 
 ```bash
 docker compose up --build
 ```
 
-Docker will automatically:
+Docker automatically:
 
-- Build the application environment
-- Install all required dependencies
-- Start the Flask backend server
-- Launch the Wound Monitoring System
-
-
-After the server starts:
-
-1. Open the PORTS tab in GitHub Codespaces.
-2. Select port 5000.
-3. Set visibility to Public if required.
-4. Open the forwarded GitHub Codespaces URL.
+- Builds the application environment
+- Installs dependencies
+- Starts the Flask backend server
+- Launches the Wound Monitoring System
 
 
-Live Codespaces Application:
+After startup:
+
+1. Open the PORTS tab in GitHub Codespaces
+2. Select port 5000
+3. Set visibility to Public if required
+4. Open the forwarded Codespaces URL
+
+
+Live Application:
 
 ```text
 https://didactic-carnival-jjj5g755px5vfj596-5000.app.github.dev/
@@ -42,19 +42,16 @@ https://didactic-carnival-jjj5g755px5vfj596-5000.app.github.dev/
 
 # Project Description
 
-The Wound Monitoring System is an IoT-based healthcare sensor monitoring application.
+The Wound Monitoring System is an IoT-based healthcare sensor monitoring system.
 
-The system collects wound sensor measurements, processes sensor signals, predicts wound conditions using machine learning, stores results in a database, and visualizes healthcare information through an interactive dashboard.
-
-
-System pipeline:
+The project implements a complete sensor data pipeline:
 
 ```text
-Sensor Measurement
+IoT Sensor Measurement
 
 ↓
 
-Signal Pre-processing
+Sensor Signal Pre-processing
 
 ↓
 
@@ -62,11 +59,11 @@ Machine Learning Classification
 
 ↓
 
-SQLite Database Storage
+Database Storage
 
 ↓
 
-Asynchronous REST API
+Asynchronous REST API Communication
 
 ↓
 
@@ -74,13 +71,16 @@ Dashboard Visualization
 ```
 
 
+The system collects wound sensor measurements, processes sensor signals, predicts wound conditions using machine learning, stores healthcare records, and visualizes patient data.
 
-# Sensor Data System
+
+
+# Sensor Hardware Concept
 
 
 ## Sensor Modality
 
-The system uses simulated IoT wound monitoring hardware.
+The prototype uses simulated IoT wound monitoring sensors representing physical healthcare hardware.
 
 Implementation:
 
@@ -89,17 +89,19 @@ sensor/sensor_simulator.py
 ```
 
 
-Measured sensor signals:
+Sensor measurements:
 
 - Temperature sensor readings
 - Moisture sensor readings
 
 
-The sensor module represents a wound monitoring device collecting physiological measurements and transmitting data to the backend API.
+The simulated sensor represents an IoT wound monitoring device similar to hardware sensors connected through microcontrollers such as ESP32.
+
+The sensor module generates wound measurements and transfers them into the backend processing system.
 
 
 
-## Sensor Signal Pre-processing
+# Sensor Signal Pre-processing
 
 Implementation:
 
@@ -108,18 +110,22 @@ sensor/preprocessing.py
 ```
 
 
-Processing steps:
+Raw sensor data processing includes:
 
-- Sensor value validation
+- Sensor data validation
+- Removing invalid measurements
 - Temperature normalization
 - Moisture normalization
-- Feature preparation for machine learning classification
+- Feature preparation for machine learning
+
+
+Processed sensor features are sent into the machine learning classification pipeline.
 
 
 
-## Machine Learning Classification
+# Machine Learning Classification
 
-Implementation:
+Machine learning implementation:
 
 ```text
 ml/train_model.py
@@ -128,18 +134,20 @@ ml/predict.py
 ```
 
 
-Machine learning model:
+Algorithm:
 
-- Decision Tree Classifier
+```text
+Decision Tree Classifier
+```
 
 
 Input features:
 
-- Temperature
-- Moisture level
+- Wound temperature
+- Wound moisture level
 
 
-Prediction output:
+Prediction classes:
 
 - Stable
 - Warning
@@ -153,40 +161,45 @@ ml/wound_classifier.pkl
 ```
 
 
+The machine learning model analyzes sensor measurements and predicts wound condition status automatically.
 
-## Database Integration
 
-Database technology:
+
+# Database Integration
+
+Database system:
 
 ```text
 SQLite + Flask SQLAlchemy
 ```
 
 
-Database file:
+Database location:
 
 ```text
 backend/instance/wound_monitor.db
 ```
 
 
-The backend stores:
+Stored information:
 
+- Patient ID
 - Patient information
-- Sensor readings
-- Machine learning prediction
+- Temperature measurements
+- Moisture measurements
+- ML classification result
 - Timestamp
 
 
-The API writes and retrieves sensor data from the database.
+The backend writes sensor results into the database and retrieves stored measurements through API endpoints.
 
 
 
-## Asynchronous API Access
+# Asynchronous API Communication
 
-The backend supports asynchronous communication.
+The backend supports asynchronous data access between sensors, database, and dashboard.
 
-Async endpoints:
+Implemented endpoints:
 
 ```text
 GET /sensor-data
@@ -197,11 +210,16 @@ GET /fhir-data
 ```
 
 
-This supports communication between sensor devices, backend processing, and dashboard visualization.
+The API allows:
+
+- Real-time sensor communication
+- Database access
+- Healthcare data exchange
+- Dashboard updates
 
 
 
-## Latency Management
+# Latency Management Concept
 
 Documentation:
 
@@ -210,33 +228,59 @@ docs/latency.md
 ```
 
 
-The latency concept includes:
+Measured system flow:
 
-- Sensor transmission latency
-- Pre-processing latency
-- Machine learning prediction latency
-- Database read/write latency
-- API response latency
+```text
+Sensor Capture
+
+↓
+
+Pre-processing
+
+↓
+
+Machine Learning Prediction
+
+↓
+
+Database Operation
+
+↓
+
+API Response
+
+↓
+
+Dashboard Update
+```
+
+
+Latency reduction methods:
+
+- Lightweight JSON sensor messages
+- Local ML prediction
+- Efficient database queries
+- REST API communication
 
 
 
 # Features
 
 - Patient registration system
-- Wound monitoring dashboard
+- IoT sensor simulation
 - Temperature monitoring
 - Moisture monitoring
-- Sensor simulation
 - Sensor signal preprocessing
 - Machine learning wound classification
 - Database storage
-- Async REST API communication
-- Healthcare FHIR JSON format support
+- Asynchronous REST API
+- Healthcare FHIR JSON format
+- Interactive dashboard
 - Chart.js visualization
 - D3.js visualization
-- Automated backend testing
-- Docker container support
-- GitHub Codespaces deployment
+- Automated testing
+- Docker deployment
+- GitHub Codespaces support
 
 
 
@@ -263,26 +307,23 @@ The latency concept includes:
 - D3.js
 
 
-## Testing and Deployment
+## Deployment
 
-- Pytest
 - Docker
 - Docker Compose
-- Git
 - GitHub Codespaces
-- VS Code
 
 
 
 # Project Screenshots
 
 
-## Wound Monitoring Dashboard
+## Dashboard
 
 ![Wound Monitoring Dashboard](dashboard-preview.png)
 
 
-## Chart.js and D3.js Visualization
+## Visualization
 
 ![Data Visualization](visualization-preview.png)
 
@@ -291,14 +332,14 @@ The latency concept includes:
 # API Endpoints
 
 
-## Dashboard
+Dashboard:
 
 ```text
 GET /
 ```
 
 
-## Sensor Data API
+Sensor Data:
 
 ```text
 GET /sensor-data
@@ -307,14 +348,14 @@ POST /sensor-data
 ```
 
 
-## Healthcare FHIR Data
+FHIR Healthcare Data:
 
 ```text
 GET /fhir-data
 ```
 
 
-## Patient Registration
+Patient Registration:
 
 ```text
 GET /register
@@ -323,7 +364,7 @@ POST /register
 ```
 
 
-## Delete Patient Record
+Delete Record:
 
 ```text
 DELETE /delete/<id>
@@ -331,24 +372,24 @@ DELETE /delete/<id>
 
 
 
-# Local Installation
+# Installation
 
 
-Clone repository:
+Clone:
 
 ```bash
 git clone https://github.com/Mosesoluwaseye/wound-monitoring-system.git
 ```
 
 
-Open project:
+Enter project:
 
 ```bash
 cd wound-monitoring-system
 ```
 
 
-Start:
+Run:
 
 ```bash
 docker compose up --build
@@ -363,7 +404,7 @@ http://localhost:5000
 
 
 
-# Automated Testing
+# Testing
 
 Run:
 
@@ -372,7 +413,7 @@ pytest -v
 ```
 
 
-Expected:
+Expected result:
 
 ```text
 3 passed
@@ -413,49 +454,44 @@ wound-monitoring-system
 
 ├── docker-compose.yml
 
-├── dashboard-preview.png
+├── README.md
 
-├── visualization-preview.png
-
-└── README.md
+└── LICENSE
 ```
 
 
 
-# Development Checklist Completed
+# Completed Requirements
 
-- Sensor data simulation
-- Sensor signal preprocessing
-- Machine learning classification
-- ML prediction integration
-- SQLite database connection
-- Database read/write functionality
-- Async API implementation
-- Latency management concept
-- Flask backend
-- Dashboard frontend
-- FHIR JSON response
-- Chart.js visualization
-- D3.js visualization
+- Sensor data system
+- Sensor preprocessing
+- Machine learning prediction
+- ML model integration
+- Database storage
+- Database loading
+- Async API routes
+- Latency concept
 - Docker containerization
-- Automated testing
-- GitHub Codespaces support
+- Healthcare JSON formatting
+- Dashboard visualization
+- Automated tests
 
 
 
 # Future Improvements
 
-- Connect real ESP32 temperature sensors
-- Connect real moisture detection sensors
-- Expand ML training dataset
-- Add authentication system
-- Deploy with cloud database
-- Add mobile monitoring application
+- Connect physical ESP32 sensors
+- Add real temperature hardware
+- Add real moisture hardware
+- Increase ML training data
+- Add authentication
+- Deploy cloud database
+- Add mobile monitoring
 
 
 
 # Project Purpose
 
-This project demonstrates a sensor-based digital healthcare monitoring system.
+This project demonstrates a complete healthcare IoT monitoring workflow.
 
-It implements the complete workflow from sensor measurement collection, signal processing, machine learning classification, database management, and real-time visualization.
+It connects sensor data acquisition, signal processing, machine learning classification, database management, API communication, and real-time visualization into one digital wound monitoring system.

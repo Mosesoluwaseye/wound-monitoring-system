@@ -39,63 +39,222 @@ https://didactic-carnival-jjj5g755px5vfj596-5000.app.github.dev/
 ```
 
 
-The Wound Monitoring Dashboard will open in the browser.
+
+# Project Description
+
+The Wound Monitoring System is an IoT-based healthcare sensor monitoring application.
+
+The system collects wound sensor measurements, processes sensor signals, predicts wound conditions using machine learning, stores results in a database, and visualizes healthcare information through an interactive dashboard.
+
+
+System pipeline:
+
+```text
+Sensor Measurement
+
+↓
+
+Signal Pre-processing
+
+↓
+
+Machine Learning Classification
+
+↓
+
+SQLite Database Storage
+
+↓
+
+Asynchronous REST API
+
+↓
+
+Dashboard Visualization
+```
 
 
 
-## Project Description
+# Sensor Data System
 
-The Wound Monitoring System is an interactive healthcare monitoring application designed to collect, manage, and visualize wound sensor information.
 
-The system records:
+## Sensor Modality
+
+The system uses simulated IoT wound monitoring hardware.
+
+Implementation:
+
+```text
+sensor/sensor_simulator.py
+```
+
+
+Measured sensor signals:
+
+- Temperature sensor readings
+- Moisture sensor readings
+
+
+The sensor module represents a wound monitoring device collecting physiological measurements and transmitting data to the backend API.
+
+
+
+## Sensor Signal Pre-processing
+
+Implementation:
+
+```text
+sensor/preprocessing.py
+```
+
+
+Processing steps:
+
+- Sensor value validation
+- Temperature normalization
+- Moisture normalization
+- Feature preparation for machine learning classification
+
+
+
+## Machine Learning Classification
+
+Implementation:
+
+```text
+ml/train_model.py
+
+ml/predict.py
+```
+
+
+Machine learning model:
+
+- Decision Tree Classifier
+
+
+Input features:
+
+- Temperature
+- Moisture level
+
+
+Prediction output:
+
+- Stable
+- Warning
+- Critical
+
+
+Trained model:
+
+```text
+ml/wound_classifier.pkl
+```
+
+
+
+## Database Integration
+
+Database technology:
+
+```text
+SQLite + Flask SQLAlchemy
+```
+
+
+Database file:
+
+```text
+backend/instance/wound_monitor.db
+```
+
+
+The backend stores:
 
 - Patient information
-- Temperature readings
-- Moisture levels
-- Wound location
-- Healing status
+- Sensor readings
+- Machine learning prediction
+- Timestamp
 
 
-Healthcare providers can register patients, monitor wound conditions, search patient records, delete outdated records, and analyze wound sensor data through an interactive dashboard.
-
-The application demonstrates healthcare data exchange concepts using FHIR-style JSON observation formatting.
+The API writes and retrieves sensor data from the database.
 
 
 
-## Features
+## Asynchronous API Access
+
+The backend supports asynchronous communication.
+
+Async endpoints:
+
+```text
+GET /sensor-data
+
+POST /sensor-data
+
+GET /fhir-data
+```
+
+
+This supports communication between sensor devices, backend processing, and dashboard visualization.
+
+
+
+## Latency Management
+
+Documentation:
+
+```text
+docs/latency.md
+```
+
+
+The latency concept includes:
+
+- Sensor transmission latency
+- Pre-processing latency
+- Machine learning prediction latency
+- Database read/write latency
+- API response latency
+
+
+
+# Features
 
 - Patient registration system
 - Wound monitoring dashboard
 - Temperature monitoring
 - Moisture monitoring
-- Patient search functionality
-- Delete patient records
-- Automatic dashboard updates
-- REST API communication
+- Sensor simulation
+- Sensor signal preprocessing
+- Machine learning wound classification
+- Database storage
+- Async REST API communication
 - Healthcare FHIR JSON format support
-- Chart.js data visualization
-- D3.js interactive visualization
+- Chart.js visualization
+- D3.js visualization
 - Automated backend testing
 - Docker container support
-- One-command Docker startup
 - GitHub Codespaces deployment
 
 
 
-## Technologies Used
+# Technologies Used
 
 
-### Backend
+## Backend
 
 - Python
 - Flask
 - Flask SQLAlchemy
-- SQLite Database
+- SQLite
+- Scikit-learn
 - REST API
-- FHIR JSON Structure
+- FHIR JSON
 
 
-### Frontend
+## Frontend
 
 - HTML
 - CSS
@@ -104,88 +263,58 @@ The application demonstrates healthcare data exchange concepts using FHIR-style 
 - D3.js
 
 
-### Testing and Deployment
+## Testing and Deployment
 
 - Pytest
 - Docker
 - Docker Compose
 - Git
-- GitHub
 - GitHub Codespaces
 - VS Code
 
 
 
-## Project Screenshots
+# Project Screenshots
 
 
-### Wound Monitoring Dashboard
+## Wound Monitoring Dashboard
 
 ![Wound Monitoring Dashboard](dashboard-preview.png)
 
 
-### Chart.js Temperature Monitoring and D3.js Visualization
+## Chart.js and D3.js Visualization
 
 ![Data Visualization](visualization-preview.png)
 
 
 
-## Data Visualization
+# API Endpoints
 
 
-### Chart.js
-
-Displays wound temperature history using interactive charts.
-
-
-### D3.js
-
-Creates dynamic visualization using live wound sensor JSON data.
-
-
-
-## API Endpoints
-
-
-### Dashboard
+## Dashboard
 
 ```text
 GET /
 ```
 
-Displays the wound monitoring dashboard.
 
-
-
-### Sensor Data API
+## Sensor Data API
 
 ```text
 GET /sensor-data
+
+POST /sensor-data
 ```
 
-Returns wound sensor information in JSON format.
 
-
-
-### FHIR Healthcare Data
+## Healthcare FHIR Data
 
 ```text
 GET /fhir-data
 ```
 
-Returns healthcare observation data using FHIR-style JSON.
 
-
-
-### Add Sensor Reading
-
-```text
-POST /sensor-data
-```
-
-
-
-### Patient Registration
+## Patient Registration
 
 ```text
 GET /register
@@ -194,8 +323,7 @@ POST /register
 ```
 
 
-
-### Delete Patient Record
+## Delete Patient Record
 
 ```text
 DELETE /delete/<id>
@@ -203,7 +331,7 @@ DELETE /delete/<id>
 
 
 
-## Local Installation
+# Local Installation
 
 
 Clone repository:
@@ -220,7 +348,7 @@ cd wound-monitoring-system
 ```
 
 
-Start the application:
+Start:
 
 ```bash
 docker compose up --build
@@ -235,9 +363,7 @@ http://localhost:5000
 
 
 
-## Automated Testing
-
-This project includes automated backend tests using Pytest.
+# Automated Testing
 
 Run:
 
@@ -246,22 +372,15 @@ pytest -v
 ```
 
 
-Successful result:
+Expected:
 
 ```text
 3 passed
 ```
 
 
-Tests included:
 
-- Home dashboard route test
-- Sensor data API test
-- FHIR healthcare API test
-
-
-
-## Project Structure
+# Project Structure
 
 ```text
 wound-monitoring-system
@@ -270,23 +389,25 @@ wound-monitoring-system
 │   ├── app.py
 │   ├── database.py
 │   ├── models.py
-│   ├── static
-│   └── templates
+
+├── sensor
+│   ├── sensor_simulator.py
+│   └── preprocessing.py
+
+├── ml
+│   ├── train_model.py
+│   ├── predict.py
+│   └── wound_classifier.pkl
+
+├── database
+│   └── schema.sql
+
+├── docs
+│   └── latency.md
 
 ├── frontend
 
-├── database
-
-├── diagrams
-
-├── docs
-
-├── hardware
-
-├── sensor-data
-
 ├── tests
-│   └── test_app.py
 
 ├── Dockerfile
 
@@ -296,48 +417,45 @@ wound-monitoring-system
 
 ├── visualization-preview.png
 
-├── README.md
-
-└── LICENSE
+└── README.md
 ```
 
 
 
-## Development Checklist Completed
+# Development Checklist Completed
 
-- Working Flask application
-- Database integration
-- REST API implementation
-- FHIR-style healthcare JSON response
-- Frontend dashboard implementation
-- Sensor data visualization
-- Chart.js implementation
-- D3.js implementation
-- Automated Pytest testing
+- Sensor data simulation
+- Sensor signal preprocessing
+- Machine learning classification
+- ML prediction integration
+- SQLite database connection
+- Database read/write functionality
+- Async API implementation
+- Latency management concept
+- Flask backend
+- Dashboard frontend
+- FHIR JSON response
+- Chart.js visualization
+- D3.js visualization
 - Docker containerization
-- Docker Compose configuration
-- One-command Codespaces startup
-- Git version control
-- GitHub repository management
-- Project documentation
+- Automated testing
+- GitHub Codespaces support
 
 
 
-## Future Improvements
+# Future Improvements
 
-- Connect physical IoT temperature sensors
-- Connect moisture detection sensors
-- Add user authentication system
-- Add cloud database storage
-- Deploy application online
-- Add mobile application support
-- Add advanced wound healing predictions
-- Add healthcare system integration
+- Connect real ESP32 temperature sensors
+- Connect real moisture detection sensors
+- Expand ML training dataset
+- Add authentication system
+- Deploy with cloud database
+- Add mobile monitoring application
 
 
 
-## Project Purpose
+# Project Purpose
 
-This project demonstrates how digital health technologies can support wound monitoring through sensor data collection, database management, healthcare data formatting, and real-time visualization.
+This project demonstrates a sensor-based digital healthcare monitoring system.
 
-The system shows how healthcare providers can track wound conditions, analyze sensor measurements, and identify possible complications using digital monitoring technology.
+It implements the complete workflow from sensor measurement collection, signal processing, machine learning classification, database management, and real-time visualization.
